@@ -65,7 +65,8 @@ export interface Script {
   path: string;
   _baseFilePath: string;
   start_time: string;
-  scripts?: any 
+  scripts?: any,
+  [key:string]:any
 }
 
 export interface Step {

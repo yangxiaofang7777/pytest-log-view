@@ -133,7 +133,7 @@ const selectFileHandle = () => {
 const readDirectory = async (dirHandle: FileSystemDirectoryHandle) => {
   const files: { name: string, content: string, path: string }[] = []
 
-  for await (const entry of dirHandle.values()) {
+  for await (const entry of (dirHandle as any).values()) {
     if (entry.kind === 'file') {
       if (!entry.name.endsWith('.pytestlog.json')) {
         continue
@@ -180,7 +180,7 @@ const transferFileToScript = (files: { name: string, content: string, path: stri
 
 const selectFolderHandle = async () => {
   try {
-    const dirHandle = await window.showDirectoryPicker()
+    const dirHandle = await (window as any).showDirectoryPicker()
     const files = await readDirectory(dirHandle)
     // console.log('select folder: ', files)
     const scripts = transferFileToScript(files)
@@ -196,7 +196,6 @@ const selectFolderHandle = async () => {
       setLogData(scripts[0])
     } else {
       const sortedScripts = sortScripts(scripts)
-      console.log(sortedScripts);
       setLogData(null as unknown as LogData)
       setAppForm({
         ...appForm.value,
@@ -238,6 +237,7 @@ const loadData = async () => {
     const transferUrl = decodeURIComponent(appForm.value.url)
     const taskId = new URLSearchParams(transferUrl.split('?')[1]).get('taskId')
     const res = await axios.get(transferUrl)
+    
     let logData: LogData | null = null
     setAppForm({
       ...appForm.value,

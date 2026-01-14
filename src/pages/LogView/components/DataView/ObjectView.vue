@@ -68,7 +68,6 @@ const compuTitleAndTag = computed(() => {
 const isShowLabelView = (value: any, key: string) => {
   const notShowArr = ['id', 'start_time', 'end_time', 'elapsed_time', 'Result', 'Title', '_baseFilePath']
   const valueType = Object.prototype.toString.call(value)
-  console.log(key, value );
   if (['[object Object]', '[object Array]'].includes(valueType)) return false
   return !notShowArr.includes(key)
 }

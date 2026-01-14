@@ -99,9 +99,9 @@ onMounted(() => {
 
 <style>
 .el-message-box__message {
-    p {
+    /* p {
         white-space: pre;
-    }
+    } */
 }
 </style>
 

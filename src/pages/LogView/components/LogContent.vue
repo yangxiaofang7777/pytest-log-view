@@ -61,7 +61,7 @@ const getErrorTree = (script: Script, index: number = 0): {
   ng_summary_message?: string
 } | undefined => {
   // if (logData?.value?.scripts) {
-  let treeData = {
+  let treeData:any = {
     label: "",
     children: [],
     Result: "",
@@ -72,7 +72,7 @@ const getErrorTree = (script: Script, index: number = 0): {
   }
   
   const parseObjectToTree = (obj: any, parentKey = "", firstTitle = "") => {
-    let treeNode = {
+    let treeNode:any = {
       label: "",
       children: [],
       Result: "",
@@ -198,7 +198,7 @@ const findMatchingNodes = (tree: any[], targetLabel: string): any[] => {
   return matches;
 }
 
-const clickErrorTree = (data: any, node: { level: number; parent: any; label: string }, treeNode: any) => {
+const clickErrorTree = (data: any, node: { level: number; parent: any; label: string ; id?:any}, treeNode: any) => {
   if (data.layer) {
     console.log("新版有layer日志", data)
     let layerArr: string[] = data.layer.split(" ")
@@ -258,7 +258,7 @@ const clickErrorTree = (data: any, node: { level: number; parent: any; label: st
     labels.forEach(async (item, index) => {
       await new Promise(resolve => setTimeout(resolve, 100));
       const spanElements = document.querySelectorAll(`span[title="${item}"]`);
-      let spanElement = null
+      let spanElement:any = null
       if (spanElements.length === 1) {
         spanElement = spanElements[0]
       } else {
